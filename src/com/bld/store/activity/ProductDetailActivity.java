@@ -15,9 +15,16 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class ProductDetailActivity extends Activity {
@@ -40,7 +47,14 @@ public class ProductDetailActivity extends Activity {
 	    title.setText(product.getName());
 	    TextView  description=(TextView) findViewById(R.id.info_text);
 	    description.setText(product.getDescription());
-	    
+	    final EditText num_text = ((EditText) findViewById(R.id.num));
+	    num_text.setText(String.valueOf(1));
+	    Button add = (Button) findViewById(R.id.btn_plus);
+		add.setOnClickListener(numButtonClickListen);
+
+		Button subtract = (Button) findViewById(R.id.btn_subtract);
+		subtract.setOnClickListener(numButtonClickListen);
+		
 	    HttpResourcesTask task = new HttpResourcesTask(this, HttpType.Img,
 				CacheType.saveInSDcard);
 		task.setParameter(ConnectionUtils.getInstance().ImageUrl+product.getImg())
@@ -72,5 +86,31 @@ public class ProductDetailActivity extends Activity {
 
 		return true;
 	}
+	
+	OnClickListener numButtonClickListen = new OnClickListener() {
 
+		@Override
+		public void onClick(View view) {
+			// TODO Auto-generated method stub
+			LinearLayout vwParentRow = (LinearLayout) view.getParent();
+			LinearLayout parentRow = (LinearLayout) view.getParent()
+					.getParent().getParent();
+			EditText child = (EditText) vwParentRow.getChildAt(1);
+		
+			int num = Integer.parseInt(child.getText().toString());
+		
+			if (view.getId() == R.id.btn_plus) {
+
+				num++;
+			} else {
+				if (num > 1) {
+					num--;
+				}
+
+			}
+		
+			child.setText(String.valueOf(num));
+
+		}
+	};
 }

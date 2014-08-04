@@ -23,6 +23,21 @@ public class StockActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.stock);
+		TextView text = (TextView)findViewById(R.id.add_product);
+		text.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent();
+
+				intent.setClass(StockActivity.this, CaptureActivity.class);
+
+				intent.putExtra("str", "come from first activity");
+
+				startActivity(intent);
+			}
+		});
 		//
 		//
 //		

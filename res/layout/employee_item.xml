@@ -11,12 +11,20 @@
         android:orientation="horizontal" 
          android:paddingTop="10dp"
          android:paddingBottom="10dp">
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:text="删除" />
+
     <TextView
         	android:id="@+id/employee_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:paddingRight="20dp"
+                android:paddingRight="10dp"
                 android:layout_weight="0.3"
                 android:text="店铺" />
 
